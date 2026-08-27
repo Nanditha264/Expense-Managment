@@ -57,7 +57,7 @@ const SetAvatar = () => {
 
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
   const [loading, setLoading] = useState(false);
-  const [selectedSprite, setSelectedSprite] = React.useState(sprites[0]);
+  //const [selectedSprite, setSelectedSprite] = React.useState(sprites[0]);
 
   useEffect(() => {
     if (!localStorage.getItem("user")) {
@@ -83,25 +83,22 @@ const SetAvatar = () => {
   ]);
 
   const handleSpriteChange = (e) => {
-    setSelectedSprite(() => {
-      if (e.target.value.length > 0) {
-        setLoading(true);
-        const imgData = [];
-        for (let i = 0; i < 4; i++) {
-          imgData.push(
-            `https://api.dicebear.com/7.x/${
-              e.target.value
-            }/svg?seed=${randomName()}`
-          );
-        }
+  const selectedSprite = e.target.value;
 
-        setImgURL(imgData);
-        // console.log(imgData);
-        setLoading(false);
-      }
+  if (selectedSprite.length > 0) {
+    setLoading(true);
 
-      return e.target.value;
-    });
+    const imgData = [];
+
+    for (let i = 0; i < 4; i++) {
+      imgData.push(
+        `https://api.dicebear.com/7.x/${selectedSprite}/svg?seed=${randomName()}`
+      );
+    }
+
+    setImgURL(imgData);
+    setLoading(false);
+    }
   };
 
   const setProfilePicture = async () => {
