@@ -18,6 +18,8 @@ connectDB();
 
 const allowedOrigins = [
   "http://localhost:3000",
+  "https://expense-managment-one.vercel.app/login",
+  "https://expense-managment-one.vercel.app"
 ];
 
 // Middleware
